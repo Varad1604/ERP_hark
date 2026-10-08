@@ -4,14 +4,14 @@
 **Date:** 2026-10-08  
 **Architecture source commit:** `933cf5d06f565cc52ef7e3b2a7f821606c2b9b6f` (SutraERP_Architecture/main)  
 **Frontend source commit:** `372376d23ac6478fa4ac3f209cb97c71317d89d2` (SutraERP_frontend/main)  
-**Authority scope:** ONLY `DhruvNaik26/SutraERP_Architecture` and `DhruvNaik26/SutraERP_frontend`; no other implementation repository consulted or authorized.  
+**Authority scope:** Canonical Architecture and frontend implementation are current source evidence; `DhruvNaik26/SutraERP_backend` was subsequently authorized/created (2026-10-08; README-only), but no legacy backend is an approved baseline. This inventory retains its original evidence snapshot.  
 **Related planning draft:** [P0 authority and decisions (draft PR #160)](https://github.com/DhruvNaik26/SutraERP_Architecture/pull/160). This document is independent and remains reviewable even if P0 is not merged.
 
 ## 1. Purpose and non-goals
 
 Identify foundational domain-owned business entities, scopes and invariants before defining PostgreSQL table and column names, SQLx implementations, APIs, events, or migration code.
 
-**Not yet authorized:** creating backend runtime code; naming physical tables/columns; asserting released APIs/events/registries; modifying locked architecture; choosing a new backend repository; merging or running CI. This is a planning proposal to review, not a claim of full corpus inventory.
+**Not yet authorized:** creating backend runtime code; naming physical tables/columns; asserting released APIs/events/registries; modifying locked architecture; merging or running CI. The new private backend repository location has been selected and initialized, but coding remains gated. This is a planning proposal to review, not a claim of full corpus inventory.
 
 **Vocabulary for non-coders:**
 
@@ -129,7 +129,7 @@ Identify foundational domain-owned business entities, scopes and invariants befo
 | P1-D04 Exact technical SQL naming, constraints, data types, indexes, migration pack format | PROPOSED, NOT APPROVED | Owner-specific physical DDL |
 | P1-D05 Historical/current-position modelling for versioned policy, StudentContext, result publication, amendments and audit | PARTIAL | Per-owner physical schema |
 | P1-D06 Person merge/split downstream reference correction/reconciliation and outstanding states | SEMANTICS APPROVED, MECHANICS UNDECIDED | Full identity integration |
-| P1-D07 Backend runtime code repository/placement, review boundaries and branch rules | NOT DECIDED | Backend production coding; **no new repository is authorized** |
+| P1-D07 Backend runtime target selected; branch protections/review boundaries still open | TARGET CREATED; CONTROLS UNVERIFIED | Backend production coding; prior code is obsolete by user decision |
 | P1-D08 Contract implementation/registry version truth (incl. J05 issue #152) | BLOCKED FOR AFFECTED SLICES | Publishing affected positive business events |
 | P1-D09 C05/I13 qualification owner conflict (#136), source-derived contract details | OPEN FOR AFFECTED SLICES | Qualification physical/contract design |
 | P1-D10 AI coding stack benchmark, local environments and runner isolation | NOT TESTED | Autonomous backend coding and CI gates |
@@ -160,6 +160,10 @@ Identify foundational domain-owned business entities, scopes and invariants befo
 - **Marks appear but qualification fails:** inspect the separate I08→I09→I10 official publication and C04/I13→C05 owner evidence, not frontend fixture status.
 - **Data exists but another module cannot read it:** first confirm a **released owner API/event/projection**, not add a cross-owner database join.
 - **AI says complete:** demand exact source commit, migration/contract version, negative tests, passing targeted tests, and real business-state evidence.
+
+### 2026-10-08 implementation direction clarification
+
+The user created private `DhruvNaik26/SutraERP_backend` and designated all prior backend code obsolete as an implementation baseline. The frontend's real backend APIs are not yet configured. This logical catalogue is deliberately partial; we will continue broad ownership coverage while applying exact physical table/column design **only to individually approved integration slices**. No legacy code will be imported by assumption. See [P0/DEC-011 integration gates](https://github.com/DhruvNaik26/SutraERP_Architecture/pull/160).
 
 ## 9. Integrity and review statement
 
