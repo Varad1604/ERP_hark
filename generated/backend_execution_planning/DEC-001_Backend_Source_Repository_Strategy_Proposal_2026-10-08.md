@@ -1,11 +1,11 @@
 # SutraERP Backend Planning — DEC-001: Source Repository Strategy
 
-**Status:** RECOMMENDED / DRAFT — NOT APPROVED.  
+**Status:** RECOMMENDATION ACCEPTED IN PRINCIPLE by user on 2026-10-08; REPOSITORY NOT YET CREATED; detailed configuration and implementation still DRAFT / NOT APPROVED.  
 **Date:** 2026-10-08  
 **Purpose:** Record an independent, reviewable recommendation for where future backend runtime source should live. No repository is created here.  
 **Evidence scope:** Only `DhruvNaik26/SutraERP_Architecture` at `main@933cf5d06f565cc52ef7e3b2a7f821606c2b9b6f` and `DhruvNaik26/SutraERP_frontend` at `main@372376d23ac6478fa4ac3f209cb97c71317d89d2` are SutraERP project evidence/authorities. Proposed future code location does not add an existing repository to decision-making.  
 **Register link:** [P0 DEC-001 — draft](SutraERP_Backend_P0_Authority_and_Decision_Register_2026-10-08.md).  
-**Decision owner:** Lead Architect approval required.
+**Decision owner:** User accepted the recommended private dedicated-backend repository approach on 2026-10-08. This does not approve backend code, locked-architecture changes, repo-main merging, runner execution or release.
 
 ## 1. Recommendation
 
@@ -87,15 +87,15 @@ This example is a **developer layout proposal**, not the Technical Composition D
 
 ## 6. Decision request / stop rule
 
-**Decision requested of Lead Architect:** Approve the principle of a **new private backend repository with one Rust Cargo workspace, modular core and selectively isolated units**, while leaving actual creation, naming, branch rules, permissions and environment provisioning as separately authorized steps.
+**Decision disposition:** The user approved proceeding with the **new private dedicated-backend repository** approach on 2026-10-08 and authorized going ahead with creation. Proposed owner/name: `DhruvNaik26/SutraERP_backend`. Creation **has not occurred**, because this GitHub connector supports writing within accessible repositories but does not expose a create-repository action. User-side GitHub UI creation (or a separately authorized creation capability) is required. Rust Cargo workspace shape, branch rules, credentials, workflows, runner isolation and implementation still require subsequent approval/verification.
 
-**Do not create a third repo now. Do not add code to Architecture or Frontend as a shortcut. No API, data table, event, business rule, permission, scope or physical topology may be inferred from this proposal. Do not merge this proposal without explicit review.**
+**Creating the explicitly authorized empty private backend repository is permitted, but it is NOT yet accomplished and confers no new architecture/governance authority. Do not add code to Architecture or Frontend as a shortcut. No API, data table, event, business rule, permission, scope or physical topology may be inferred from this proposal. Do not merge this proposal without explicit review.**
 
 ### Follow-up acceptance checklist
 
-- [ ] Lead Architect selects dedicated backend repo vs explicitly constrained frontend subdirectory.
-- [ ] Repository name/owner and initial private visibility approved.
+- [x] User selected dedicated backend repository in principle (2026-10-08).
+- [x] User authorized recommended private `DhruvNaik26/SutraERP_backend` repository creation; exact spelling can be adjusted before creation.
 - [ ] Branch protection, CI/runner trust, AI agent identity, approvals and secret policies specified.
 - [ ] Machine-readable module boundary/conformance mechanism selected.
 - [ ] Contract provenance/version/registry distribution approach approved.
-- [ ] Implementation target created only after explicit repository-creation authorization.
+- [ ] Empty private backend repository actually created and GitHub connector granted access; no production code or CI authorized yet.
