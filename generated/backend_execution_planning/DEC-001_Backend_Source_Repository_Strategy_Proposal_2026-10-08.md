@@ -1,21 +1,21 @@
 # SutraERP Backend Planning — DEC-001: Source Repository Strategy
 
-**Status:** RECOMMENDATION ACCEPTED IN PRINCIPLE by user on 2026-10-08; REPOSITORY NOT YET CREATED; detailed configuration and implementation still DRAFT / NOT APPROVED.  
+**Status:** BACKEND TARGET SELECTED AND CREATED by user on 2026-10-08; implementation/review/branch rules remain DRAFT / NOT APPROVED.  
 **Date:** 2026-10-08  
-**Purpose:** Record an independent, reviewable recommendation for where future backend runtime source should live. No repository is created here.  
-**Evidence scope:** Only `DhruvNaik26/SutraERP_Architecture` at `main@933cf5d06f565cc52ef7e3b2a7f821606c2b9b6f` and `DhruvNaik26/SutraERP_frontend` at `main@372376d23ac6478fa4ac3f209cb97c71317d89d2` are SutraERP project evidence/authorities. Proposed future code location does not add an existing repository to decision-making.  
+**Purpose:** Record the selected new private backend implementation repository and remaining execution safeguards. The repository was created outside this planning PR and contains a README only.  
+**Evidence scope:** Canonical authority is `SutraERP_Architecture` (`main@933cf5d06f565cc52ef7e3b2a7f821606c2b9b6f`); frontend implementation reference is `SutraERP_frontend` (`main@372376d23ac6478fa4ac3f209cb97c71317d89d2`); new backend implementation target is `SutraERP_backend` (`main@213c323303bf9fff4284c15b94f9d4735d68759a`, README only). No other existing code is an authoritative backend baseline.  
 **Register link:** [P0 DEC-001 — draft](SutraERP_Backend_P0_Authority_and_Decision_Register_2026-10-08.md).  
 **Decision owner:** User accepted the recommended private dedicated-backend repository approach on 2026-10-08. This does not approve backend code, locked-architecture changes, repo-main merging, runner execution or release.
 
 ## 1. Recommendation
 
-**Recommend one new private GitHub repository dedicated to SutraERP backend runtime source**, proposed name `DhruvNaik26/SutraERP_backend` (name is provisional, not an approved canonical identity).
+**Selected** private [SutraERP_backend](https://github.com/DhruvNaik26/SutraERP_backend) as the sole target for new runtime code; its current verified state is README-only, without a Rust workspace or tests.
 
 Maintain three distinct *roles*:
 
 1. `SutraERP_Architecture` — governing L0–L6 business/technical architecture, approved source decisions, planning/governance evidence. **Do not add production runtime code** (architecture README §1 and CONTRIBUTING).
 2. `SutraERP_frontend` — non-authoritative client, UX implementations and mock-operational review evidence; consume authentic released backend contracts when available. **Do not quietly convert the web-client repository into a mixed backend/runtime repository** (frontend README).
-3. **Proposed future** backend repo — separately reviewed Rust platform implementation, physical owner-scoped PostgreSQL migrations, contract conformance, tests, deployment artifacts, backend CI. **No new business-rule or architecture authority** transfers to the new repo.
+3. **New backend** repo — future separately reviewed Rust platform implementation, physical owner-scoped PostgreSQL migrations, contract conformance, tests, deployment artifacts, backend CI. **No new business-rule or architecture authority** transfers to the new repo.
 
 **Important distinction:** A single backend **Git repository** does not imply a single runtime process, a shared database schema, one service per business domain, or permission for cross-owner data access.
 
@@ -40,7 +40,7 @@ Maintain three distinct *roles*:
 ## 3. Proposed backend repository structure (illustrative only)
 
 ```text
-SutraERP_backend/          # PROPOSED, DOES NOT EXIST OR HAVE APPROVAL
+SutraERP_backend/          # REPOSITORY EXISTS; SUBFOLDERS BELOW PROPOSED, NOT CREATED
   Cargo.toml               # One Rust Cargo workspace
   apps/
     api/                   # Axum HTTP adapter and controlled composition
@@ -87,9 +87,9 @@ This example is a **developer layout proposal**, not the Technical Composition D
 
 ## 6. Decision request / stop rule
 
-**Decision disposition:** The user approved proceeding with the **new private dedicated-backend repository** approach on 2026-10-08 and authorized going ahead with creation. Proposed owner/name: `DhruvNaik26/SutraERP_backend`. Creation **has not occurred**, because this GitHub connector supports writing within accessible repositories but does not expose a create-repository action. User-side GitHub UI creation (or a separately authorized creation capability) is required. Rust Cargo workspace shape, branch rules, credentials, workflows, runner isolation and implementation still require subsequent approval/verification.
+**Decision disposition:** The user approved, created, and connected **private `DhruvNaik26/SutraERP_backend`** on 2026-10-08; the new repo has README only. **User explicitly classified any older backend code as obsolete/unusable as an implementation baseline** on 2026-10-08. No legacy code import/assumptions are permitted without a separately authorized and independently tested exception. Rust workspace shape, branch protections, credentials, workflows, runner isolation and production code remain unapproved/unverified.
 
-**Creating the explicitly authorized empty private backend repository is permitted, but it is NOT yet accomplished and confers no new architecture/governance authority. Do not add code to Architecture or Frontend as a shortcut. No API, data table, event, business rule, permission, scope or physical topology may be inferred from this proposal. Do not merge this proposal without explicit review.**
+**The new private backend repository now exists but confers no new architecture/governance authority. Do not add code to Architecture or Frontend as a shortcut. No API, data table, event, business rule, permission, scope or physical topology may be inferred from this proposal. Do not merge this proposal without explicit review.**
 
 ### Follow-up acceptance checklist
 
@@ -98,4 +98,4 @@ This example is a **developer layout proposal**, not the Technical Composition D
 - [ ] Branch protection, CI/runner trust, AI agent identity, approvals and secret policies specified.
 - [ ] Machine-readable module boundary/conformance mechanism selected.
 - [ ] Contract provenance/version/registry distribution approach approved.
-- [ ] Empty private backend repository actually created and GitHub connector granted access; no production code or CI authorized yet.
+- [x] Private backend repository created; `README.md` verified through connected GitHub; no runtime code or CI authorized yet.
