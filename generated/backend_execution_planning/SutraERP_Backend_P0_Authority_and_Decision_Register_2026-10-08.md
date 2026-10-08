@@ -3,7 +3,7 @@
 **Date:** 2026-10-08 (Asia/Kolkata)  
 **Status:** **DRAFT FOR REVIEW — P0 evidence gathered; P0 NOT formally approved or closed**  
 **Work mode:** Documentation-only planning, authorized 2026-10-08. This draft is proposed on a review branch; no approval of canonical architecture changes or production code is implied. No implementation, tests or CI have been executed as part of this planning update.  
-**Authority constraint:** ONLY `DhruvNaik26/SutraERP_Architecture` and `DhruvNaik26/SutraERP_frontend` are consulted for SutraERP project architecture and implementation status. No other existing repository governs or supplies implementation evidence for this plan. Public vendor standards may be consulted later for tool due diligence but are not business-architecture authority.
+**Authority constraint:** `SutraERP_Architecture` governs canonical architecture; `SutraERP_frontend` is current client evidence; **`DhruvNaik26/SutraERP_backend` is now the user-authorized new implementation target**, created 2026-10-08 with README at `main@213c323303bf9fff4284c15b94f9d4735d68759a`. No historical/legacy backend code is an authorized baseline. Public vendor standards may be consulted for technical due diligence but do not create business authority. Public vendor standards may be consulted later for tool due diligence but are not business-architecture authority.
 
 ## 1. Verified repositories and baseline
 
@@ -17,6 +17,16 @@ Architecture's [final L5 lock decision (2026-09-23)](https://github.com/DhruvNai
 The [Stage-5 terminal evidence](https://github.com/DhruvNaik26/SutraERP_Architecture/blob/main/architecture/L6_UI_UX_Architecture/00_Governance/L6_Stage5_Batch20_Final_Validation_Cleanup_and_Stage6_Readiness_2026-10-06.md) records completion of the mock-operational frontend and Stage-6 readiness. The [frontend README](https://github.com/DhruvNaik26/SutraERP_frontend/blob/main/README.md) explicitly excludes authentic released backend integration and production validation. The frontend root has no dedicated `backend/` source directory at the verified head. **No released SutraERP backend implementation is verified by this two-repository P0 review.** Do not turn absence of evidence into a claim that no backend exists anywhere.
 
 Branch endpoint metadata reported `protected: false` for both `main` branches. **Effective repo rulesets / merge protections are NOT fully verified**, so audit and configure applicable controls before AI write access and merging.
+
+### 2026-10-08 execution clarification — user approved, review still pending
+
+- **Backend target:** the new private [SutraERP_backend](https://github.com/DhruvNaik26/SutraERP_backend) exists, is connected and has README only; it is the sole designated target for **new** backend implementation. Architecture remains canonical; code cannot create business authority.
+- **Prior backend code:** any old/pre-existing backend repository/code is **user-designated LEGACY/OBSOLETE as an implementation baseline**, not a usable dependency, compliance evidence or automatic migration candidate. Do not copy, run, deploy, delete, or promote that code by default. A later migration exception requires a separate explicitly approved review with independent tests. This is a prospective programme rule, not a claim that old code was exhaustively inspected.
+- **Frontend API status:** authentic frontend↔backend integrations/production API contracts are **not configured/released** as project implementation evidence. Do not infer released APIs from UI mocks, paths, fixtures or examples.
+- **Protection responsibility:** user will arrange GitHub protections. The connected API reported `protected:false` and ruleset verification was restricted; **enforcement is UNVERIFIED**, so no AI autonomous merge/write to protected base, no production coding/CI until checks are demonstrably operational.
+- **Execution order:** (1) update decision/status truth, (2) choose smallest low-dependency slice, (3) approve its owner and released contract, (4) reproducible local backend/security baseline, (5) real protected read with frontend integration, (6) first governed write, (7) only then durable cross-owner event path if applicable. Logical entity coverage across A–J proceeds in parallel as **planning**; no need for all owner physical DDL before first slice.
+
+See [integration gate plan](DEC-011_Frontend_Backend_Integration_Safety_and_Acceptance_Plan_2026-10-08.md) and [execution issue-resolution addendum](DEC-012_Execution_Risk_Resolution_and_Decision_Packet_2026-10-08.md).
 
 ## 2. Non-negotiable L1 logical design constraints
 
@@ -87,7 +97,7 @@ Additional implementation standard gaps confirmed in L5 texts:
 
 | Gate | Product | Must prove | Current status |
 |---|---|---|---|
-| P0 — Authority & blockers | Snapshot, source matrix, blocker/dependency map, code-target decision register | Two permitted repos, current refs, L1/L5 authority, true blockers, reviewers/decisions | **IN PROGRESS**; current document is preliminary evidence |
+| P0 — Authority & blockers | Snapshot, source matrix, blocker/dependency map, code-target decision register | Canonical Architecture + Frontend authority, new Backend target, current refs, L1/L5 rules, blockers, reviewers/decisions | **IN PROGRESS**; repository target selected, branch protection and other gates open |
 | P1 — Complete logical design | Whole-system conceptual/ER/ownership/scope model; primary data dictionary | No duplicate authority; clear Person, Tenant, Student Context, history, effective policy and read-only cross-owner projections | NOT STARTED |
 | P2 — Communications | API/event/workflow/consumer catalogue with owner, contract version, failure semantics | No invented released endpoints/events; cross-domain command/idempotency/reconciliation/error model | NOT STARTED |
 | P3 — Per-slice physical schema | Full table/column/type/nullability/PK/FK/index/constraint/RLS policy/DDL/migrations and roll-forward/backfill | L1–L5 traceability, accepted domain invariants, fail-closed negative tests | NOT STARTED |
@@ -103,7 +113,7 @@ Additional implementation standard gaps confirmed in L5 texts:
 - [x] Verified the frontend Stage-5 mock boundary and current frontend workflow properties.
 - [ ] Complete exhaustive L1/L2 owner/entity/capability and canonical event register, including all amended authoritative sources.
 - [ ] Complete target-by-target dependency mapping including event/consumer chronology and all policy-source owners.
-- [ ] Approve backend code location and PR/branch governance; do not alter repos implicitly.
+- [x] User selected and created dedicated private backend target; legacy backend baselines excluded. **[ ]** PR/branch governance and effective protections still require confirmation.
 - [ ] Confirm effective GitHub rulesets, runner resource specs and security controls.
 - [ ] Choose and record the first nonconflicted golden slice with approved business behavior.
 - [ ] Obtain explicit Lead Architect acceptance to close P0 and authorize P1/P2 drafting.
