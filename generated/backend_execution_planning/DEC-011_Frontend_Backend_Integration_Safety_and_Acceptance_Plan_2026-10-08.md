@@ -3,7 +3,7 @@
 **Date:** 2026-10-08  
 **Status:** DRAFT PLANNING GATES / NOT RELEASED / NO REAL INTEGRATION PERFORMED  
 **Requested outcome:** Reduce the risk of frontend/backend mismatches when development starts; zero integration defects cannot be guaranteed.  
-**Current authority:** Only `DhruvNaik26/SutraERP_Architecture` and `DhruvNaik26/SutraERP_frontend` have been inspected. A new **private** `DhruvNaik26/SutraERP_backend` code repository is approved in principle by the user, but **does not yet exist as a verified accessible repository**. It will be an implementation repository, not an independent source of business/architecture authority.  
+**Current authority:** `SutraERP_Architecture` remains canonical, `SutraERP_frontend` is current client implementation evidence, and the user created and connected private `DhruvNaik26/SutraERP_backend` on 2026-10-08 (README-only at `main@213c323303bf9fff4284c15b94f9d4735d68759a`). Any older backend code is explicitly designated obsolete and is **not** a baseline for migration or direct integration.  
 **Evidence snapshot:** Architecture `main@933cf5d06f565cc52ef7e3b2a7f821606c2b9b6f`; Frontend `main@372376d23ac6478fa4ac3f209cb97c71317d89d2`.
 
 ## 1. Precise integration objective
@@ -26,8 +26,8 @@ For each real user journey the browser shall consume exactly the version of the 
 
 ### Gate I0: Repository and access before any backend code
 
-- User creates the approved **private** backend repository under the approved GitHub owner; use empty repo with README and a normal `main` branch.
-- Give the existing connected GitHub App/ChatGPT access to that specific new repository, subject to user review. Never copy production secrets into the chat.
+- **DONE:** User created the private backend repository; `main` and initial README verified. No backend runtime code was present when checked.
+- **DONE:** Connected GitHub access to the private backend repository verified. Never copy production secrets into the chat.
 - Require protected `main` / human review, defined AI write access to task branches only, distinct backend/test credentials, no force-push or auto-merge. Verify rules actually enforced (current existing-repo protected flags alone do not establish rule evaluation).
 - Confirm branch workflows, self-hosted runners, isolation and local test environment before any build/run authorization. No third-party legacy source is grandfathered into authority.
 - Architecture `main` remains canonical governance; backend, frontend and approved contracts must reference exact relevant source revisions, never reinterpret upstream decisions.
@@ -79,7 +79,7 @@ Each slice's review packet records **actual** frontend and backend commit SHAs, 
 
 | Risk | Consequence | Status |
 |---|---|---|
-| Backend repository not created / GitHub App lacks access | Cannot initialize and verify backend source/branch control | BLOCKED |
+| Backend repo created/connector verified, protection outstanding | Repo initialized with README; no safe autonomous production coding until rules are proven | PARTIALLY CLOSED |
 | No active released owner API/event catalogs for some journeys | Client/backend could agree on invented contract but still violate architecture | BLOCKED FOR AFFECTED SLICES |
 | Cookie deployment origin/CSRF configuration untested | Logins fail or protected requests get denied even if handlers work | PROPOSED TEST |
 | Difference between mock operation and actual backend workflow | UI may falsely show success or call an invalid transition | NOT INTEGRATED |
@@ -88,11 +88,20 @@ Each slice's review packet records **actual** frontend and backend commit SHAs, 
 
 ## 5. Minimum approval decisions next
 
-- **Repository creation:** Private `DhruvNaik26/SutraERP_backend`, user authorized in principle on 2026-10-08; **creation pending** because the available GitHub connector has no create-repository action.
+- **Repository creation:** Private `DhruvNaik26/SutraERP_backend` created, README and `main` verified. User owns GitHub branch-protection resolution; enforcement must be verified before coding agents begin.
 - **Governed contract catalog location and mechanics:** Must be agreed before physical API schemas are promoted; do not assign authority to a code generator.
 - **First slice choice:** Pick a simple source-owned, protected read + valid source-owned mutation once applicable L2–L5 semantics and contract authority are verified.
 - **API cookie/deployment profile:** Approve concrete tested browser/backend URL and HTTPS local/dev profile before coding authentication integration.
 - **CI and scope isolation checks:** Define genuine negative tests on real PostgreSQL and real browsers, then isolate runners.
+
+### Revised integration order and non-configured frontend API state (user confirmation 2026-10-08)
+
+- **Current API status:** Frontend API integration has **not** been configured; do not treat React mock operations, endpoints in prose, or fixture data as API contracts or actual backend integration.
+- **Phase 1 (no invented endpoints):** Select small low-dependency existing owner-backed protected read and confirm its L2/L4/L5 authority. Draft and approve exact versioned OpenAPI contract before implementing either side.
+- **Phase 2:** Validate backend implementation against the contract and its authentication/Tenant scope; frontend consumes the same versioned contract in a bounded adapter, keeping mock and real modes clearly separated.
+- **Phase 3:** Verify real read in local browser, wrong-Tenant/expired-session/late-response handling; only then add a separately approved state-changing workflow, idempotency and durable event path where required.
+- **No big-bang integration:** Contract tests on every changed slice, exact pair of frontend/backend commit IDs, owner-backed business evidence, and no mock success masquerading as backend success.
+- **Legacy code exclusion:** Old/pre-existing backend code may be historical context only, not a default dependency, migration input, endpoint source or deployable baseline. A distinct approval and test-backed decision is required for any exceptional reuse.
 
 ## 6. Simple debugging vocabulary
 
