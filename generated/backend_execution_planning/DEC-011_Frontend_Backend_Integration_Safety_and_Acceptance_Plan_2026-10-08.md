@@ -103,6 +103,37 @@ Each slice's review packet records **actual** frontend and backend commit SHAs, 
 - **No big-bang integration:** Contract tests on every changed slice, exact pair of frontend/backend commit IDs, owner-backed business evidence, and no mock success masquerading as backend success.
 - **Legacy code exclusion:** Old/pre-existing backend code may be historical context only, not a default dependency, migration input, endpoint source or deployable baseline. A distinct approval and test-backed decision is required for any exceptional reuse.
 
+## Mobile readiness addendum — 2026-10-09
+
+**Scope clarification:** User asked to keep the backend reusable for both web and future mobile. This follows existing **locked** [L5-G-01-004 Future Mobile Application Architecture](../../architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-004_Future_Mobile_Application_Architecture.md) (v1.0.3), [L5-G-01-001](../../architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-001_Client_Platform_Architecture_Baseline.md), [L5-G-01-003](../../architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-003_Client_Security_Session_State_and_Contract_Consumption_Architecture.md), C01 contract authority and D01/D02/A04.
+
+### Mandatory platform-neutral backend design, starting with the first web slice
+
+1. **One business backend:** Web and future native mobile consume the **same canonical released C01 API/owner contracts**; they may have different platform-specific transport/session adapters, but mobile does not create new business endpoints, rules or storage authority. Do not bake browser-only objects, cookies or React assumptions into domain/service business contracts.
+2. **Authentication distinction:** ADR-L5-0038 locks opaque Secure/HttpOnly same-site cookie session behavior for **browser** authentication. G01-004 §5.11 explicitly **defers** the concrete mobile-capable D01 authentication mechanism, credential/session/token exchange, secure-storage realization and device binding. **Do not assume a browser cookie model automatically solves native mobile login**; design a D01-governed client-neutral session/authorization boundary and keep mobile authentication as a formal architecture decision gate.
+3. **Shared security rules:** protected Tenant/Institution scope, D02 authorization, server-side business ownership, context-epoch invalidation, unknown-outcome reconciliation and correlation apply equally to both clients.
+4. **API compatibility:** support released API major versions and agreed compatibility windows so older installed mobile apps cannot silently call retired behavior. An unsupported mobile contract version must fail in a governed way, not fall back to hidden endpoints. Exact mobile support window is **not yet approved**.
+5. **Connectivity and storage:** mobile is **online-first**, with **no durable offline authoritative mutations** or queued replay under current locked architecture. Device caches/secrets require approved secure-classification and revalidation, not browser localStorage patterns.
+6. **Push, deep links, camera and biometrics:** future mobile adapters only; these inputs do not authorize business state, and push-provider/device framework selection is deferred.
+7. **Release independence:** backend APIs should not require web UI releases to deploy, and mobile app-store update delay must be covered by compatibility/revocation tests. Client-specific user experience belongs to L6, not server business logic.
+8. **Testing:** first web slice should prove API schema/ownership, server session authorization, tenant scope and version/error contracts. **Before claiming mobile support**, run actual selected mobile-client tests for session, version skew, intermittent network, secure storage, notification ingress and context changes.
+
+### Mobile readiness decision ledger
+
+| Decision | Current status | Owner/gate |
+|---|---|---|
+| Shared backend / canonical C01 contracts | **LOCKED** by G01-004 | Apply to backend from day one |
+| Web React client | **Approved and implemented as mock frontend** | Web G01-002; real APIs not configured |
+| Mobile native/hybrid framework and mobile app codebase | **NOT SELECTED** | G01-004; future approved ADR before mobile coding |
+| Mobile authentication/session carrier | **NOT SELECTED** | D01 + G01-004 §5.11; must not copy browser-cookie assumptions |
+| Mobile secrets/device storage | **Architecture constraints established; exact implementation deferred** | D01/D03/G01-004 |
+| Push notifications and device adapters | **FUTURE / NOT IMPLEMENTED** | C04/G01-004 |
+| Offline authoritative work | **NOT APPROVED** | New governance required to change |
+| Backwards compatibility for installed mobile app versions | **Required; exact support period undecided** | C01 + G01-004 §5.12 |
+| First cross-client acceptance evidence | **NOT EXECUTED** | Initial web read first; mobile conformance when mobile development authorized |
+
+**Risk statement:** Current plan is **mobile-compatible in architecture**, not mobile production-ready. Do not advertise completed mobile login, APIs, push, offline operations, app-store support or mobile integration testing.
+
 ## 6. Simple debugging vocabulary
 
 - **API** = agreed way the screen talks to the backend.
