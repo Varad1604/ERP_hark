@@ -1,0 +1,67 @@
+/*
+ * Soft Bento design tokens (ported from the SutraERP prototype).
+ * Role accents are applied by setting data-role on <html> (see RoleThemeProvider).
+ */
+:root {
+  /* neutrals */
+  --sb-ink: #1c1b22;
+  --sb-ink-2: #2a2933;
+  --sb-mute: #6b6976;
+  --sb-mute-2: #6b6976;
+  --sb-mute-dark: #a9a6b5;
+  --sb-body: #4a4855;
+  --sb-bg: #faf8f4;
+  --sb-surface: #ffffff;
+  --sb-line: #efedf3;
+  --sb-line-strong: #d9d6e0;
+
+  /* accent (overridden per role) */
+  --ac: #1c1b22;
+  --acs: #efedf3;
+  --act: #1c1b22;
+  --ac-wash: #f3effa;
+
+  /* status */
+  --sb-success: #2e8b57;
+  --sb-attention-bg: #ffe4de;
+  --sb-attention-fg: #9e2f1c;
+  --sb-review-bg: #fff1d1;
+  --sb-review-fg: #765600;
+  --sb-neutral-bg: #efedf3;
+  --sb-neutral-fg: #5a5864;
+  --sb-done-bg: #e1f4ea;
+  --sb-done-fg: #1d6a40;
+  --sb-info-bg: #dcebff;
+  --sb-info-fg: #2f64c0;
+
+  /* tints: [background, foreground] */
+  --tint-orange-bg: #ffe9dc; --tint-orange-fg: #e8743b;
+  --tint-green-bg: #dff3e8;  --tint-green-fg: #2e8b57;
+  --tint-violet-bg: #e7e1ff; --tint-violet-fg: #7254e6;
+  --tint-blue-bg: #dcebff;   --tint-blue-fg: #3b7be8;
+  --tint-rose-bg: #ffe4de;   --tint-rose-fg: #c2412d;
+  --tint-amber-bg: #fff1d1;  --tint-amber-fg: #a77a0b;
+  --tint-grey-bg: #efedf3;   --tint-grey-fg: #6b6976;
+  --tint-teal-bg: #daf2f2;   --tint-teal-fg: #1f8a8a;
+
+  /* shape + depth */
+  --radius-tile: 26px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --radius-xs: 12px;
+  --radius-pill: 40px;
+  --shadow-tile: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-pop: 0 20px 50px rgba(0, 0, 0, 0.14);
+  --shadow-overlay: 0 30px 80px rgba(0, 0, 0, 0.2);
+
+  /* type */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --gap: 16px;
+  --touch: 44px;
+}
+
+:root[data-role="administrator"] { --ac: #e8743b; --acs: #ffe1cc; --act: #a84a18; --ac-wash: #fff4ec; }
+:root[data-role="faculty"]       { --ac: #3b7be8; --acs: #dcebff; --act: #2155b0; --ac-wash: #eef5ff; }
+:root[data-role="student"]       { --ac: #7254e6; --acs: #e4dcff; --act: #5434c4; --ac-wash: #f3efff; }

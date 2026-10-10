@@ -1,0 +1,5668 @@
+[
+ {
+  "key": "W-A01",
+  "name": "Tenant Administration",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Tenant lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Tenant configuration and controlled change",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-A02",
+  "name": "Person & Identity",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Person identity lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Identity reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-A03",
+  "name": "Authentication & Sign-in",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Authentication and credential recovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "MFA enrollment",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Authentication provider onboarding",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-A04",
+  "name": "Access & Responsibility",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Responsibility assignment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Responsibility delegation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Temporary access",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Emergency access",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Workspace definition governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Separation-of-duties policy governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Authorization policy lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-A05",
+  "name": "Workflow & Human Tasks",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Workflow definition lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Workflow execution and recovery",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Human decision task resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-A06",
+  "name": "Event Governance",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Event contract lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Event delivery and recovery",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Historical event replay",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Event subscription lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-A07",
+  "name": "Audit & Evidence",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Audit evidence availability",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Audit investigation and restored access",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Audit integrity verification",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Audit retention and archival",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-A08",
+  "name": "Capability / Module Registry",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Capability module lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Module dependency governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-A09",
+  "name": "Master Data",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Dataset lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Governed dataset import",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Governed dataset export",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Dataset synchronization",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Dataset localization",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-A10",
+  "name": "Operational Readiness",
+  "group": "platform",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Readiness assessment and remediation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Readiness certificate lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Readiness significant-change impact review",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-B01",
+  "name": "Institution Administration",
+  "group": "institution",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Institution lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Institution profile revision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Institutional policy revision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-B02",
+  "name": "Organisation Structure & Positions",
+  "group": "institution",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Organisation unit lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Organisation structure transformation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Organisation governance configuration",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Position definition lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-B03",
+  "name": "Institutional Campus Registry",
+  "group": "institution",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Institutional campus lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 6
+   }
+  ]
+ },
+ {
+  "key": "W-B04",
+  "name": "Curriculum Framework",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Curriculum lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "School academic model lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-B05",
+  "name": "Academic Calendar",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Academic calendar lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Calendar assignment",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Calendar exception",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Academic year closure",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Calendar change simulation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C01",
+  "name": "Admissions",
+  "group": "students",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Admission status lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Admission document verification",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C02",
+  "name": "Student Workspace",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Student activation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Student enrollment and assignment",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Student suspension and restoration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Student profile and communication preferences",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Student identity and duplicate reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Student document and certificate request",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Student context archival",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C03",
+  "name": "Academic Registration",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Academic registration window",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Academic registration lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Registration hold lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C04",
+  "name": "Academic Progression & Credits",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Academic progression decision lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Academic credit ledger",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Credit transfer and recognition",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Programme migration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Academic break and rejoining",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Qualification eligibility determination",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Academic progression policy governance",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C05",
+  "name": "Qualification & Exit",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Qualification completion and conferment",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Student exit lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 7
+   },
+   {
+    "label": "Institutional exit clearance",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C06",
+  "name": "Guardian Relationships",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Guardian relationship lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Guardian custody and consent governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Guardian communication and responsibility governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Emergency and pickup authorization",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-C07",
+  "name": "Scholarship Eligibility",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Scholarship definition and policy lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Scholarship eligibility assessment",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Scholarship eligibility expiry and archive",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "External scholarship synchronization",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Scholarship eligibility to financial aid handoff",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-C08",
+  "name": "Alumni Transition",
+  "group": "students",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Alumni transition lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-D01",
+  "name": "Course Offerings",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Course Offering establishment and activation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Course Offering suspension and reactivation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Course Offering cancellation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Capacity and quota governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Enrollment restriction and cross-boundary availability governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Waitlist and seat resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Course Offering version replacement and rollback",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Course Offering archival",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Course Offering merge / split reorganization",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Template-based Course Offering generation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Course Offering freeze and unfreeze",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Enrollment-window governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Course Offering change simulation and impact decision",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-D02",
+  "name": "Faculty Academic Assignment",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Faculty Academic Assignment lifecycle",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Faculty Academic Assignment governance configuration",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-D03",
+  "name": "Timetable",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Timetable lifecycle — plan, revise, publish, activate, retire",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-D04",
+  "name": "Teaching Sessions & Attendance",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Teaching Session execution and outcome",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Attendance capture, finalization and correction",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Teaching progress and syllabus-coverage publication",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-D05",
+  "name": "Academic Monitoring",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Monitoring initiation, outcome and academic-risk assessment",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Monitoring intervention, governance review, closure and reopening",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Monitoring governance-exception resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-D06",
+  "name": "Flexible Learning / Electives / MOOCs",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Flexible-learning enrollment, seat allocation and waitlist resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "External-learning provider registration",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Learning progress and completion",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Credit recognition and Academic Records posting handoff",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Learning-opportunity lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "External-learning certificate verification and investigation routing",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Learning-provider onboarding and activation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Flexible-learning policy and approval configuration",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Credit-mapping rule configuration",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Flexible-learning academic-session archival",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "External-learning record reconciliation and exception closure",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-D07",
+  "name": "Internal Assessment",
+  "group": "academics",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Internal Assessment blueprint and window governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Internal Assessment submission and marks capture",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Internal Assessment moderation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Internal Assessment finalization and archival",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Finalized Internal Assessment correction",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E01",
+  "name": "Workforce Engagement",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Workforce Engagement establishment and activation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Active Workforce Engagement modification",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Workforce organisational transfer",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Workforce suspension and operational restoration",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Workforce deputation lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Long-leave operational availability",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Workforce Engagement closure and exit consequence",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Workforce rejoining consequence",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Duplicate Workforce Profile resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E02",
+  "name": "Position & Assignment",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Position Assignment lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Supplementary Position occupancy",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Delegated authority and additional charge",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Committee membership appointment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Responsibility Assignment lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Reporting Relationship lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Service Jurisdiction lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Organisational authority resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Position occupancy conflict resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Assignment suspension / freeze and restoration",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Position Assignment correction and rollback",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Bulk Position Assignment operation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E03",
+  "name": "Faculty Workforce",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Faculty Workforce lifecycle",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Faculty capability lifecycle",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Faculty qualification verification",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Faculty teaching eligibility",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Faculty availability, workload and capacity planning",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E04",
+  "name": "HR Services & Cases",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Employee onboarding and accepted owner handoffs",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "HR leave-case coordination",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "HR service and grievance case resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Employment-change case handoffs",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Employee certificate request",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Employee separation case and exit handoff",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "HR compliance case",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Probation review and confirmation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E05",
+  "name": "Leave Management",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Leave Policy lifecycle",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Leave request decision and cancellation",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Leave entitlement / balance automatic lifecycle",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Governed leave balance adjustment",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Leave encashment eligibility",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Leave exception resolution",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E06",
+  "name": "Payroll",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Regular Payroll Run lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Payroll adjustment and retroactive pay",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Final-settlement payroll",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Off-cycle payroll",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Payroll Configuration lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-E07",
+  "name": "Employee Profile",
+  "group": "people",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Employee Profile establishment and activation",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Employee core-profile maintenance",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Employee qualification and certification verification",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Employee skills and language profile maintenance",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Employee Profile document registration and verification",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Employee Profile correction",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Source-owned outcome to Employee Profile synchronization",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Separation-triggered Employee Profile archival",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Employee Profile suspension and restoration",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Duplicate Employee Profile merge",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F00",
+  "name": "Finance Control & Configuration",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Finance Configuration lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Financial Rule governance lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F01",
+  "name": "Student Fees & Charges",
+  "group": "finance",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Student Charge establishment, schedule and financial closure",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Published Student Charge correction handoff",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Source-owned Student Charge lifecycle consequence",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Student Charge dispute resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F02",
+  "name": "Payments & Receipts",
+  "group": "finance",
+  "roles": [
+   "administrator",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Payment receipt and allocation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Unidentified / unallocated receipt reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Payment failure, timeout, reversal and chargeback recovery",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Payment cancellation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Bulk collection outcome",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F03",
+  "name": "Refunds",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Refund request, approval, execution and cancellation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Refund failure, reversal, recovery and history",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-F04",
+  "name": "Financial Adjustments",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Credit, debit and write-off Financial Adjustment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Financial Adjustment reversal and corrected successor",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-F05",
+  "name": "General Ledger",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Automatic financial transaction ledger posting",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Manual Journal governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Accounting Posting Batch",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Posted Journal reversal",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Ledger reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Trial Balance generation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Accounting close-readiness handoff",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Closed-ledger audit and historical evidence",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F06",
+  "name": "Budgets & Cost Centres",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Budget proposal, revision/virement and closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Budget allocation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Budget control decision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Cost Center lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F07",
+  "name": "Accounts Receivable",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Receivable recognition and settlement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Receivable dunning / collection governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Receivable write-off decision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Receivable reopening",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F08",
+  "name": "Accounts Payable",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Vendor invoice approval and payable settlement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Payable dispute / hold resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Payable change incorporation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Payable suspension, reopening and write-off referral",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Payable reconciliation and historical closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-F09",
+  "name": "Financial Periods & Closing",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Financial Year / Period establishment and opening",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Financial Period close, reopening/reclose and archival",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Financial Year end closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F10",
+  "name": "Treasury & Banking",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Treasury bank-account lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Approved payment population bank execution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Bank / cash reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Treasury liquidity decision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Inter-account fund transfer",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Failed / returned / uncertain bank transaction resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F11",
+  "name": "Financial Aid",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Financial Aid allocation, renewal and revocation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Financial Aid disbursement / charge consequence",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Aid funding and utilization reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F12",
+  "name": "Asset Accounting",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Financial Asset capitalization",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Asset depreciation, revaluation and impairment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Asset disposal and financial write-off accounting",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-F13",
+  "name": "Financial Reports & Analytics",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Official Financial Report lifecycle and disposition",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Statutory financial-reporting handoff",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Management financial reporting",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "KPI Definition / Analytical Model version governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Financial KPI and dashboard projection",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Financial report audit and historical reconstruction",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-F14",
+  "name": "Procurement Finance",
+  "group": "finance",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Procurement budget commitment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Supplier invoice match, vendor liability and Finance closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-G00",
+  "name": "Campus Operations Governance",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Campus readiness assessment and governance decision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Accreditation evidence preparation and H09 handoff",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Campus Operational Review lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Executive governance review and recommendation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Operational Risk lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Multi-Domain Action Plan lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Multi-domain SLA deviation governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Campus Operational Health assessment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Governance KPI review",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Operational Maturity Assessment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Governance Finding and corrective-action decision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Executive Governance Resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Governance evidence/dependency exception recovery",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Governance configuration lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G01",
+  "name": "Facilities",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Facility Service Request and administrative closure",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Facility Complaint lifecycle, duplicate consolidation and split work",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Work Order lifecycle, reopening, reassignment and replanning",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Preventive Maintenance cycle, deferral and missed-cycle recovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Corrective maintenance, root-cause and repeat-failure improvement",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Emergency maintenance, incident intervention and post-incident review",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Vendor assignment, service failure and performance evaluation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "AMC service execution, failure and renewal action",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Utility monitoring, outage and anomaly recovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Facility Inspection lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Facility SLA governance and operational escalation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Maintenance consumable and operational-cost history",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Facilities operational-configuration governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G02",
+  "name": "Laboratories",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Laboratory readiness, warning and availability recovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Practical Session operational lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Laboratory scheduling, batch allocation and reallocation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Equipment operational status, restriction and usage",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Laboratory safety verification, warning and emergency stabilization",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Laboratory Incident resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Laboratory incident maintenance-recommendation handoff to G01",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Laboratory Inspection, findings and controlled follow-up",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Laboratory Compliance and non-compliance resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Laboratory consumable-usage history",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Laboratory operational-restriction / utility-failure recovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Laboratory operational-configuration governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G03",
+  "name": "Hostel",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Hostel admission, waitlist, residency activation and closure lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Resident leave and verified-return lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Curfew exception and authorised-late-entry decision",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Hostel visitor request, visit and closure",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Hostel discipline and curfew-violation resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Room transfer and reallocation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Hostel complaint review, resolution and closure",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Hostel room inspection and damage resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Mess allocation and reallocation lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Hostel operational-configuration governance",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G04",
+  "name": "Transport",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Transport Route creation, modification, sequencing, suspension and permanent revision",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Transport Stop creation and suspension lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Transport allocation assignment, change and withdrawal",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Driver assignment and replacement",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Trip planning, readiness and pre-execution cancellation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Trip execution, route deviation and completion",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Vehicle operational assignment and breakdown replacement",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Vehicle operational issue to G01 maintenance recommendation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Pre-trip and post-trip operational checks",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Transport Pass issue, renewal, replacement and suspension lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Emergency route diversion and temporary-stop adjustment",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Transport Complaint review and corrective-resolution lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Transport operational-configuration governance",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G05",
+  "name": "Library",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Library Membership activation, suspension and closure lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Catalogue creation, review, publication and update lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Library Copy registration and condition restriction lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Circulation issue, return and renewal lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Reservation, availability/collection and expiry lifecycle",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Overdue fine and waiver governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Lost or damaged library-resource recovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Library acquisition approval, receipt and catalogued-copy establishment",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Reading Room opening, usage and operational closure",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Stock verification, discrepancy investigation and administrative review",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Library clearance approval and institutional-exit hand-off",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Resource-availability conflict and alternative resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Borrowing restriction administrative resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Library operational-configuration governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Library operational reporting and governance review",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G06",
+  "name": "Health / Medical Services",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Health Centre configuration, activation and temporary-closure lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Patient/medical-encounter registration, identity exception, readiness, consultation and follow-up",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Emergency/first-aid response, external referral and ambulance coordination",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Prescription creation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Medicine dispensing and availability-exception resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Medicine inventory condition assessment and medical-operations alert",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Observation-stay admission/completion and capacity-exception resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Medical referral creation/completion and institutional follow-up",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Medical certificate issuance and revocation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Health programme planning/completion and screening/camp follow-up",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Vaccination campaign and recorded vaccination outcome",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Annual health-checkup assessment",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Occupational-health assessment and medical outcome",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Medical-event disclosure decision and Student/Employee Portal hand-off",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Medical-professional unavailability and alternative operational assignment",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Medical operational-configuration governance",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Healthcare operational reporting and governance review",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Medical clearance decision",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G07",
+  "name": "Security Operations",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Security Office activation and temporary-closure lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Gate configuration/open/close and person-access decision/override",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Visitor/courier/contractor access, check-in, closure and exit",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Vehicle campus-movement lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Material gate-pass request, decision and movement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Patrol execution and exception escalation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Security shift handover and continuity",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Security incident, emergency, missing-person and fire/safety response",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Medical-security incident hand-off to G06",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Lost & Found report, registration, claim, handover and unclaimed disposition",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Escort request, assignment, completion and exception response",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Security policy configuration governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Security delegation to temporary operational authority",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Security operational reporting and dashboard governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G08",
+  "name": "Housekeeping & Service Governance",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Housekeeping Zone configuration, change and deactivation lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Cleaning schedule, assignment and recurring/deep/event/emergency/special task execution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 7
+   },
+   {
+    "label": "Cleaning complaint, repeat-corrective and request-SLA escalation lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Hygiene inspection and compliance/corrective outcome",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Consumable shortage/availability monitoring, alert and continuity recovery",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Quality inspection, re-clean and cleanliness-improvement governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Housekeeping incident resolution and escalation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Facility issue to G01 maintenance hand-off",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Waste collection, exception, segregation and specialised external-handling coordination",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Vendor operational assignment and service-performance outcome",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Housekeeping SLA monitoring and vendor-breach corrective governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Housekeeping policy configuration governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Housekeeping delegation to temporary operational authority",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Housekeeping operational reporting and dashboard governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G09",
+  "name": "Teacher Guardian Scheme",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Mentorship relationship activation, assignment change/review and workspace readiness",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Scheduled/unscheduled mentoring session, context readiness/continuation and completion",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Parent-interaction requirement, discussion and follow-up",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Mentoring issue to governed institutional referral",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Mentoring follow-up cycle and progress outcome",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Mentorship case closure, reassignment/exit closure and pending-follow-up resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Mentorship record correction and audited successor",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Mentoring information disclosure decision",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Mentorship timeline and student/management reporting",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Mentorship extension configuration governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-G10",
+  "name": "Infrastructure Management",
+  "group": "campus",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Physical Campus registration, institutional reference association and governed attribute update",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Physical hierarchy creation — Building, Floor, Space and Zone",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Space classification and operational-capability governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Capacity and availability profile definition/change",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Infrastructure reservation request, reschedule and cancellation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Infrastructure allocation establishment and controlled reallocation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Operational responsibility assignment and transfer",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Infrastructure validation and governed administrative update",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Compliance registration, status update and restriction",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Infrastructure inspection and risk-reviewed closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Preventive/corrective/emergency maintenance requirement and G01 completion reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Capital renovation proposal, governance and physical reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Infrastructure sustainability governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Physical infrastructure security classification",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Disaster-recovery requirement and controlled recovery-state governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Infrastructure lifecycle initiation and activation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Infrastructure decommissioning and controlled archival",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Infrastructure configuration-change governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Physical Campus boundary change and institutional-context collaboration",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Infrastructure correction and audited historical amendment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Infrastructure portfolio reporting and dashboard governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H01",
+  "name": "APAAR & DigiLocker",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Learner-account linking",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Credential publication, revocation, republication, bulk execution and recovery",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Government publication consent lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Institutional/government credential reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Government connector lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H02",
+  "name": "Notifications",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Notification scheduling, delivery, emergency routing, recovery and provider evidence",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Notification template governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Recipient preference/subscription governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H03",
+  "name": "Enterprise Directory & Search",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Related-enterprise discovery",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Search projection synchronization, recovery and governed onboarding",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Enterprise Search configuration governance",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H04",
+  "name": "Placement",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Employer registration and participation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Placement Drive publication, disruption and closure",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Student application, selection, offer and joining",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Internship lifecycle and verified completion",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Placement institutional outcome reporting",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H05",
+  "name": "Research",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Research proposal/project governance and closure",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Research Grant governance and closure",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Research ethics and continuing compliance",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Research publication governance and archival",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Research IP disclosure/protection/closure",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Research collaboration lifecycle",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Consultancy delivery and reconciliation",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Research portfolio governance/reporting",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H06",
+  "name": "Alumni Engagement",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Student-to-Alumni handoff and Alumni relationship establishment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni membership lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni profile/preference governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni Chapter lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni networking relationship",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni mentoring engagement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni contribution/engagement lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni Recognition governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Alumni donation intent to Finance-confirmed contribution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H07",
+  "name": "Enterprise Dashboards",
+  "group": "intelligence",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Dashboard publication/change/retirement/restoration lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Dashboard Template governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Dashboard workspace assignment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Dashboard sharing/access governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Widget Definition governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H08",
+  "name": "Statutory / Regulatory Reporting",
+  "group": "intelligence",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Regulatory Reporting Framework Definition governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Reporting Cycle planning, snapshot, approval, submission and closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   }
+  ]
+ },
+ {
+  "key": "W-H09",
+  "name": "Accreditation & Compliance",
+  "group": "intelligence",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Accreditation Framework governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Accreditation Cycle, evidence, assessment, readiness and SSR handoff",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 5
+   },
+   {
+    "label": "Compliance Requirement lifecycle and periodic review",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Internal Audit lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "CAPA remediation, verification and closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Quality Improvement lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-H10",
+  "name": "External Education Integrations",
+  "group": "services",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "External Education Provider lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "External Connector configuration lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "External Provider Trust lifecycle",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Synchronization, progress exchange and discrepancy reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "External Enrollment Exchange",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "External Credit request to canonical Academic decision",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "External Credential Verification",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Governed external education data exchange",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I01",
+  "name": "Examination Policy & Configuration",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Examination Policy definition, revision, activation and retirement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-I02",
+  "name": "Examination Sessions",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Examination Session creation and governed revision",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Duplicate Examination Session resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I03",
+  "name": "Examination Planning & Scheduling",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Examination Schedule planning, revision, publication and withdrawal",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Examination venue allocation and seating arrangement",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Invigilation assignment and shortage resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Practical/Viva examiner allocation",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Examination scheduling conflict resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I04",
+  "name": "Examination Registration",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Candidate, assisted, late and administrative registration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Registration deadline override and reopening",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Registration amendment, error, duplicate, scope conflict and transfer resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 6
+   },
+   {
+    "label": "Registration withdrawal, reinstatement and opportunity-change withdrawal",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Registration rejection/ineligibility decision",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Special-permission and special-arrangement registration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Supplementary/backlog/improvement registration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Registration population finalization",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I05",
+  "name": "Hall Tickets",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Hall Ticket issuance and population finalization",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Hall Ticket withheld-entry decision",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Hall Ticket invalidation following registration withdrawal",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Special-arrangement Hall Ticket governance",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Duplicate/conflicting Hall Ticket resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I06",
+  "name": "Practical & Viva Conduct",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Practical/Viva conduct, special arrangement, re-conduct and panel viva",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Non-theory entry/non-participation and identity decision",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Practical resource and batch-allocation conflict resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Mid-conduct examiner replacement",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Medical interruption and candidate withdrawal during non-theory conduct",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Non-theory conduct record correction",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I07",
+  "name": "Theory Examination Conduct",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Theory conduct, multi-centre conduct, re-conduct and special arrangement",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Theory entry/non-participation and identity decision",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Theory seating-conflict resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Mid-conduct invigilator replacement",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Question-paper unavailability, compromise and conduct-issue disposition",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Answer-script collection/custody discrepancy resolution",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Medical interruption and candidate withdrawal during theory conduct",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Theory conduct record correction",
+    "roles": [
+     "administrator",
+     "faculty",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I08",
+  "name": "Marks & Evaluation",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty"
+  ],
+  "workflows": [
+   {
+    "label": "Marks collection, evaluation and final approval",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Marks submission exception resolution",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Marks moderation under approved policy",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Incomplete evaluation and withheld approval",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Supplementary/improvement, re-conduct and special-arrangement evaluation",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Second evaluation, evaluation-difference and adjudicating evaluation",
+    "roles": [
+     "administrator",
+     "faculty"
+    ],
+    "scenarios": 3
+   }
+  ]
+ },
+ {
+  "key": "W-I09",
+  "name": "Result Processing",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Result computation, recomputation, moderation and policy-governed computation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 6
+   },
+   {
+    "label": "Result-computation blocking and governed resumption",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Approved-marks correction and recomputed result",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Result-processing identity mismatch handoff and resume",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Duplicate/conflicting result-computation reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Malpractice consequence application in result processing",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Examination-exception resolution to post-resolution result",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Individual-result approval blocking and release",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Result reopening, correction and pre-publication replacement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-I10",
+  "name": "Result Publication",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Official result publication",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Publication blocking and withheld-result release",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Publication delay and delay resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Pending publication cancellation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Post-publication correction, replacement, republication and discrepancy correction",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Published-result withdrawal and restoration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Revised publication after revaluation/rechecking",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Source-governed consequence to official publication",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Publication failure recovery",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I11",
+  "name": "Revaluation & Rechecking",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Revaluation request, processing and withdrawal",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Rechecking request, processing and withdrawal",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Practical revaluation/rechecking",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Revaluation evaluator conflict-of-interest replacement",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Additional revaluation and adjudication",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Interrupted revaluation recovery",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Duplicate/conflicting revaluation/rechecking request resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Revaluation reopening and finalized-outcome correction",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-I12",
+  "name": "Supplementary / Backlog / Improvement Exams",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Subsequent-examination application eligibility and attempt authorization",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Subsequent-examination scheduling, revision and rescheduling",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Subsequent-examination re-conduct",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Duplicate subsequent-examination attempt reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Conflicting subsequent-examination result reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Opportunity cancellation and restoration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Attempt exhaustion and policy-change eligibility determination",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Subsequent-examination execution coordination",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I13",
+  "name": "Academic Completion & CGPA Evidence",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Completion eligibility evaluation and authoritative re-evaluation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Incomplete/conflicting completion-input resolution",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Completion identity/candidate association correction hand-off",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Duplicate completion evaluation/evidence reconciliation",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Governed completion/provisional evidence establishment and reissue",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Completion evidence correction, withdrawal and restoration",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Upstream Examination dependency blocking and resume",
+    "roles": [
+     "administrator",
+     "student"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I14",
+  "name": "Malpractice & Examination Committee",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Malpractice case reopening and authorized appeal review",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Malpractice review decision and restored examination outcome",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Duplicate/conflicting malpractice case or decision reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Malpractice adjudication and penalty determination",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Malpractice case closure and archival",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I15",
+  "name": "Examination Exceptions & Contingency",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Examination exception registration and impact classification",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Contingency suspension, resumption and termination of conduct",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Re-conduct authorization and contingency re-examination",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Contingency decision communication",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Exception escalation and conflicting-decision resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Exception reopening, review and closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Contingency postponement and rescheduling",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Examination contingency-plan preparation and authorization",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-I16",
+  "name": "Examination Closure & Archive",
+  "group": "examination",
+  "roles": [
+   "administrator",
+   "faculty",
+   "student"
+  ],
+  "workflows": [
+   {
+    "label": "Examination Session closure and finalization",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Authorized archived-record retrieval",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Retention classification, disposal and legal-hold governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Examination record archival",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J01",
+  "name": "Procurement Planning & Sourcing",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Procurement Plan lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Competitive/RFP/Tender/Direct sourcing",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Consolidated/split demand sourcing",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Multi-supplier award",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Rate Contract lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Single-source, emergency and external sourcing governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Insufficient-competition disposition",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Sourcing-event cancellation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J02",
+  "name": "Vendors & Suppliers",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Supplier registration and activation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Supplier qualification, renewal, restriction and classification",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Supplier profile maintenance and sensitive change approval",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Supplier performance/risk assessment",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Supplier suspension, blacklisting and remediation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Supplier inactivity and relationship closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Duplicate supplier and external-reference reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Supplier representative lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J03",
+  "name": "Purchase Requisitions & Approvals",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Purchase Requisition approval/rejection",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Purchase Requisition amendment and termination",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Emergency Purchase Requisition",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J04",
+  "name": "Purchase Orders",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Purchase Order issue and supplier acknowledgement",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Purchase Order amendment/cancellation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Purchase Order closure and exceptional closure",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ },
+ {
+  "key": "W-J05",
+  "name": "Goods Receipt & Inspection",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Goods receipt, inspection and disposition",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Finalized receipt correction",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J06",
+  "name": "Inventory & Warehouse",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Item master lifecycle",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Warehouse/location structure governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Accepted receipt to inventory consequence",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Expiry/controlled-stock availability governance",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Movement/activity to inventory availability and ledger consequence",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Inventory stock adjustment and discrepancy correction",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Reorder-threshold publication",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Inventory valuation-reference reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Disposal/write-off inventory adjustment consequence",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J07",
+  "name": "Stock Operations & Distribution",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Stock issue and reservation execution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Stock return, transfer and distribution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Consumption and custody handover",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Stock movement exception resolution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Asset-linked stock custody handoff",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Stock movement cancellation/reversal",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J08",
+  "name": "Asset Lifecycle",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Asset registration, assignment and return",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Asset location and transfer",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Asset condition, missing, maintenance and verification reconciliation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 4
+   },
+   {
+    "label": "Asset retirement, disposal handoff and archival",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Protected Asset history correction",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J09",
+  "name": "Physical Verification & Reconciliation",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Inventory verification audit lifecycle and interrupted audit",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Inventory variance investigation and adjustment referral",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Confirmed audit loss/damage to J10 referral",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Asset-linked verification to J08 finding",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Supplemental audit determination",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   }
+  ]
+ },
+ {
+  "key": "W-J10",
+  "name": "Disposal / Scrap / Write-Off",
+  "group": "resources",
+  "roles": [
+   "administrator"
+  ],
+  "workflows": [
+   {
+    "label": "Disposal/write-off authorization, rejection and cancellation",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Disposal execution and partial execution",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   },
+   {
+    "label": "Loss/write-off, audit-linked and asset-linked disposal",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 3
+   },
+   {
+    "label": "Emergency disposal",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 1
+   },
+   {
+    "label": "Disposal exception and supplemental correction",
+    "roles": [
+     "administrator"
+    ],
+    "scenarios": 2
+   }
+  ]
+ }
+]

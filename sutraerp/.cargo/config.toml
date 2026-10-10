@@ -1,0 +1,8 @@
+[env]
+# Queries are runtime-checked (sqlx::query / query_as), so builds never need a live database.
+SQLX_OFFLINE = "true"
+
+[build]
+jobs = 2
+
+incremental = false

@@ -1,0 +1,85 @@
+# Local development dependencies for SutraERP.
+#   docker compose up -d            # infra only (postgres, keycloak, valkey, mailpit)
+#   docker compose --profile app up # + api and web containers
+name: sutraerp
+
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: sutra
+      POSTGRES_PASSWORD: sutra
+      POSTGRES_DB: sutra
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ./deploy/postgres/init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sutra -d sutra"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7
+    command: ["start-dev", "--import-realm", "--http-port=8180"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloak
+      KC_HEALTH_ENABLED: "true"
+    ports: ["8180:8180"]
+    volumes:
+      - ./deploy/keycloak/realm-sutra-dev.json:/opt/keycloak/data/import/realm-sutra-dev.json:ro
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  valkey:
+    image: valkey/valkey:8
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports: ["1025:1025", "8025:8025"]
+
+  migrate:
+    profiles: ["app"]
+    build: { context: ., dockerfile: deploy/docker/api.Dockerfile }
+    command: ["migrate"]
+    environment:
+      SUTRA_ENV: development
+      DATABASE_URL: postgres://sutra:sutra@postgres:5432/sutra
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  api:
+    profiles: ["app"]
+    build: { context: ., dockerfile: deploy/docker/api.Dockerfile }
+    environment:
+      SUTRA_ENV: development
+      SUTRA_LOG_FORMAT: json
+      DATABASE_URL: postgres://sutra:sutra@postgres:5432/sutra
+      SUTRA_AUTH_PROVIDER: dev
+      SUTRA_KEYCLOAK_URL: http://keycloak:8180
+    ports: ["8080:8080"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+
+  web:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: deploy/docker/web.Dockerfile
+      args: { VITE_AUTH_MODE: api }
+    ports: ["3000:8080"]
+    depends_on: [api]
+
+volumes:
+  pgdata:

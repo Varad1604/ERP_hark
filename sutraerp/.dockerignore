@@ -1,0 +1,6 @@
+target
+**/node_modules
+apps/web/build
+apps/web/.react-router
+.git
+.env

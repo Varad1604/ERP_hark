@@ -1,0 +1,139 @@
+name: SutraERP CI
+
+on:
+  push:
+    branches: [main, erp_merge, "dev/**"]
+    paths: ["sutraerp/**", ".github/workflows/sutraerp-ci.yml"]
+  pull_request:
+    paths: ["sutraerp/**", ".github/workflows/sutraerp-ci.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  SQLX_OFFLINE: "true"
+
+defaults:
+  run:
+    working-directory: sutraerp
+
+jobs:
+  rust:
+    name: Rust (fmt · clippy · test)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: sutraerp
+      - name: fmt
+        run: cargo fmt --all -- --check
+      - name: clippy
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - name: test
+        run: cargo test --workspace --locked
+
+  rust-db:
+    name: Rust integration (PostgreSQL 18)
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: sutra
+          POSTGRES_PASSWORD: sutra
+          POSTGRES_DB: sutra
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U sutra" --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgres://sutra:sutra@localhost:5432/sutra
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: sutraerp
+      - run: cargo test -p sutra-persistence --features db-tests --locked
+
+  openapi-drift:
+    name: OpenAPI drift
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: sutraerp
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: sutraerp/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: sutraerp/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Spec generated from code matches committed openapi/openapi.json
+        run: |
+          cargo run -q -p sutra-api -- openapi > /tmp/openapi.json
+          diff -u openapi/openapi.json /tmp/openapi.json
+      - name: TS client matches the spec
+        run: |
+          pnpm gen:api
+          git diff --exit-code packages/api-client/src/schema.d.ts
+
+  web:
+    name: Web (typecheck · lint · test · build)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: sutraerp/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: sutraerp/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r typecheck
+      - run: pnpm lint
+      - run: pnpm -r test
+      - run: pnpm -r build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: sutraerp/apps/web/build/client
+          retention-days: 7
+
+  # ADR-L5-0030: image build/push to GHCR + Cosign signing is wired in Batch 9 (production
+  # hardening) on ephemeral trusted runners; Batch 0 only verifies the images build.
+  images:
+    name: Container images (build only)
+    runs-on: ubuntu-24.04
+    needs: [rust, web]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: sutraerp
+          file: sutraerp/deploy/docker/api.Dockerfile
+          push: false
+          tags: sutraerp/api:ci
+      - uses: docker/build-push-action@v6
+        with:
+          context: sutraerp
+          file: sutraerp/deploy/docker/web.Dockerfile
+          push: false
+          tags: sutraerp/web:ci

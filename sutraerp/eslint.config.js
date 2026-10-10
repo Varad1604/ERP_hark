@@ -1,0 +1,22 @@
+// @ts-check
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import tseslint from "typescript-eslint";
+
+export default tseslint.config(
+  { ignores: ["**/dist/**", "**/build/**", "**/node_modules/**", "**/.react-router/**", "target/**", "packages/api-client/src/schema.d.ts"] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: { globals: { ...globals.browser }, ecmaVersion: 2023 },
+    plugins: { "react-hooks": reactHooks },
+    rules: {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "@typescript-eslint/consistent-type-imports": "error",
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    },
+  },
+);

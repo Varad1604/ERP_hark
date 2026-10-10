@@ -1,0 +1,16 @@
+//! # sutra-api — composition root of the SutraERP modular monolith
+//!
+//! Wires infrastructure (config, telemetry, PostgreSQL pool, stores) to the module crates and
+//! exposes one Axum application:
+//!
+//! * `/health/live`, `/health/ready`
+//! * `/api/v1/...` module routes (OpenAPI 3.1 generated from code via utoipa)
+//! * `/api/openapi.json`
+//!
+//! Only this crate knows about every module; modules know only contracts (ADR-L5-0003).
+
+pub mod app;
+pub mod config;
+pub mod openapi;
+pub mod shutdown;
+pub mod telemetry;
