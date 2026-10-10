@@ -16,23 +16,22 @@ Specify a possible **read-only, web-and-future-mobile-compatible** wire agreemen
 ## Candidate operation (illustrative: NOT approved)
 - `GET /api/v1/institutions/{institutionId}/summary` — **proposed route and parameter name only**. Final external contract owner may select a different route and selector.
 - Request: validated D01 session, validated Tenant root and current scope (mechanism **not yet selected**), D02-approved resource-specific read capability. No browser-selected Tenant default and no authentication token in query strings.
-- Success: exactly one authorized Institution's **canonical identity, name, code, current lifecycle state**, from B01 owner authoritative read; no writing or activation.
+- Success: exactly one authorized Institution's **canonical business identity, code and current lifecycle state**, from a B01-owned authoritative read; no writing, activation, profile revision or historical profile query. Institution Name is deferred until authoritative current-profile resolution is established.
 - Candidate camelCase response body (illustrative wire names, **not approved**):
 
 ```json
 {
   "institutionId": "<canonical B01 ID>",
-  "institutionName": "<approved display name>",
   "institutionCode": "<code unique within owning Tenant>",
   "lifecycleStatus": "Suspended"
 }
 ```
 
-`institutionId`, `institutionName`, `institutionCode`, `lifecycleStatus` and lifecycle JSON spelling are **candidate wire names**; canonical source labels are Institution Business Identity, Institution Name, Institution Code and Institution Lifecycle State. Exact field typing, optionality, metadata and information classification require B01/C01/D02 approval. The literal example is not executable, valid synthetic identity data or released test fixture.
+`institutionId`, `institutionCode`, `lifecycleStatus` and lifecycle JSON spelling are **candidate wire names**; canonical source labels are Institution Business Identity, Institution Code and Institution Lifecycle State. **Institution Name is an existing B01 master-information fact, not an unresolved business requirement**, but remains outside this initial three-field contract to avoid inventing current-profile selection. Exact field typing, optionality, metadata and information classification require B01/C01/D02 approval. The literal example is not executable, valid synthetic identity data or released test fixture.
 
 ## Proposed inclusion/exclusion
-- **Include**, subject to owner disclosure approval: canonical Institution identity, name, code, current lifecycle.
-- **Exclude**: Institution administrators' identities, Contact/Address, registration details, policy and authorization data, activation decisions/reasons, past state history, tenant directory, downstream business records, internal SQL keys, sensitive audit or readiness claims.
+- **Include**, subject to owner disclosure approval: canonical Institution business identity, code and current lifecycle. Treat source-owned business UUID and technical PostgreSQL identity separately under ADR-L5-0036.
+- **Exclude from initial response**: Institution Name until authoritative current-profile selection is proved; Institution administrators' identities, Contact/Address, registration details, policy and authorization data, activation decisions/reasons, past state history, tenant directory, downstream business records, internal SQL keys, sensitive audit or readiness claims.
 - Only one selected Institution, **no directory/list API** in this first slice.
 - A current record of an Archived Institution is NOT a historical timeline/report; historical reporting needs another governed contract and data retention definition.
 
