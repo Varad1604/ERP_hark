@@ -46,6 +46,15 @@ Fields below are **logical proposed disclosures, not actual JSON keys, Rust stru
 - [ADR-L5-0034](../../architecture/L5_Solution_Architecture/adr/ADR-L5-0034_Synchronous_API_Wire_Versioning_Error_and_Idempotency_Profile.md): contract-first OpenAPI 3.2, camelCase member names, major API version routing, RFC 9457 technical errors; read does not implicitly need a mutation idempotency key.
 - [L5-G-01-003](../../architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-003_Client_Security_Session_State_and_Contract_Consumption_Architecture.md), [G01-004](../../architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-004_Future_Mobile_Application_Architecture.md): client-held state cannot become authority; old-context results barred; same backend contract reused by future mobile without forcing browser-session technology on mobile.
 
+### User business-direction decision, 2026-10-10 — historical visibility (requires D02 policy approval)
+
+- **Accepted user requirement:** When the **Tenant is Active**, an **appropriately authorized Administrator** may read the current identity/status of **Suspended and Archived Institutions for historical reference**. Archived Institutions remain permanently non-operational and cannot be modified. Suspended Institutions do not permit normal new operational activity. The word "Administrator" describes an intended user population, **not** a blanket cross-Institution/cross-Tenant permission grant.
+- **Not accepted by implication:** unconditional visibility of any Institution, access when the **Tenant itself** is Suspended/Archived, record editing, restoration, historical audit export, sensitive Profile/Policy disclosure, universal Administrator grants, or Tenant-inactive bypass.
+- **Architecture conflict/gap to escalate:** L2-A01 context resolution rejects inactive Tenants, while B01/L4-B-002/B-003 preserve historical reference for Suspended/Archived Institutions. A special inactive-Tenant retrieval capability requires **A01/D01/D02/A04/D03** upstream definition. Normal B01 API shall **fail closed** until then; do not invent a support-user bypass.
+- **Next action:** B01 + D02 formalize specific read permissions per Institution status and resource scope; C01 releases an exact contract after review. The user's preference is an accepted **product requirement**, not a formally activated security policy or released endpoint.
+
+See [P1-004 draft API contract](P1_004_B01_Protected_Institution_Summary_API_Draft_2026-10-10.md) and [P1-005 draft physical columns](P1_005_A01_B01_Column_Level_Persistence_Blueprint_2026-10-10.md).
+
 ## 4. Exact access/disclosure questions requiring owner decisions
 
 | Question | Why it matters | Current status / required reviewer |
