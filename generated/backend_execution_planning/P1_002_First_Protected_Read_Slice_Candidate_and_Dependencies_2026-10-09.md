@@ -25,14 +25,14 @@
 | Institution identity | B01 Institution | Exactly one parent Tenant per Institution | Fetch current B01-owned identity only |
 | Institution code | B01 Institution | Unique per Tenant | Display only if approved contract permits |
 | Institution lifecycle position | B01 Institution | Controlled by B01 state machine | Read existing authoritative state only |
-| Institution Profile | B01 Institution | Distinct from Policy; effective history matters | OUT OF FIRST SLICE |
+| Institution Profile | B01 Institution | Distinct from Policy; approved effective history is already required by locked L3-B-004 | OUT OF FIRST SLICE: profile revision/history and name projection requiring profile-version resolution |
 | Institution Policy | B01 Institution | Distinct from D02 authorization policy | OUT OF FIRST SLICE |
 | Session/principal | D01 | Authoritative authenticated context | Must be real and validated |
 | Access decision | D02 | Exact operation/resource permission | Never presume all Administrators may read |
 | Scope validation | A04 | Institution subordinate to Tenant | Reject mismatch, missing or switched context |
 | Browser projection | G01 | Non-authoritative, scope-partitioned | Discard old-context responses |
 
-**Unapproved:** exact database schema, IDs/column types, read endpoint, JSON DTO, permission name, caching policy and response status mapping. These must be specified/released by the applicable owners.
+**Unapproved:** exact database schema, business-to-technical identifier mapping, read endpoint, JSON DTO, permission name, caching policy and response status mapping. These are implementation and contract gates, **not requests to reapprove the locked L2/L3 Institution identity and profile-history requirements**. The first read remains canonical Institution identity/code and current lifecycle only; a current display Name is a separate follow-on contract decision after authoritative source resolution.
 
 ## 3. Delivery gates: sequence and acceptance evidence
 
