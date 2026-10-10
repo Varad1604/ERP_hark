@@ -1,0 +1,32 @@
+{
+  "realm": "sutra",
+  "enabled": true,
+  "displayName": "SutraERP (dev)",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "bruteForceProtected": true,
+  "roles": {
+    "realm": [
+      { "name": "administrator" },
+      { "name": "faculty" },
+      { "name": "student" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "sutra-api",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "dev-only-change-me",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "protocol": "openid-connect"
+    }
+  ],
+  "users": [
+    { "username": "admin@sutra.dev", "email": "admin@sutra.dev", "firstName": "Dhruv", "lastName": "Naik", "enabled": true, "emailVerified": true, "realmRoles": ["administrator"], "credentials": [{ "type": "password", "value": "sutra", "temporary": false }] },
+    { "username": "meera.shah@sutra.dev", "email": "meera.shah@sutra.dev", "firstName": "Meera", "lastName": "Shah", "enabled": true, "emailVerified": true, "realmRoles": ["faculty"], "credentials": [{ "type": "password", "value": "sutra", "temporary": false }] },
+    { "username": "aarav.desai@sutra.dev", "email": "aarav.desai@sutra.dev", "firstName": "Aarav", "lastName": "Desai", "enabled": true, "emailVerified": true, "realmRoles": ["student"], "credentials": [{ "type": "password", "value": "sutra", "temporary": false }] }
+  ]
+}

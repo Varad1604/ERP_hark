@@ -1,0 +1,25 @@
+[package]
+name = "sutra-academic"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "SutraERP domain module (academic). Batch 0 scaffold."
+
+[lints]
+workspace = true
+
+[dependencies]
+sutra-kernel.workspace = true
+sutra-contracts.workspace = true
+sutra-web.workspace = true
+axum.workspace = true
+serde.workspace = true
+utoipa.workspace = true
+utoipa-axum.workspace = true
+async-trait.workspace = true
+
+
+[dev-dependencies]
+tokio.workspace = true

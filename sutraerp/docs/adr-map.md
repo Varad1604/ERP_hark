@@ -1,0 +1,29 @@
+# ADR → code map
+
+Architecture authority lives in the architecture repository (`architecture/L5_Solution_Architecture/adr`).
+This table shows where each followed ADR is realised in this codebase and what is deferred.
+
+| ADR | Decision (short) | Where in code | Batch 0 status |
+|-----|------------------|---------------|----------------|
+| L5-0003 Contract-driven modular platform | Modular application core; modules collaborate only via contracts | `modules/*` (one crate per domain A–J), `crates/contracts`, composition root `apps/api/src/app.rs`; boundaries enforced by `apps/api/tests/architecture.rs` | ✅ |
+| L5-0004 Tenant & institution isolation | Tenant-rooted validated scope, fail closed, no default tenant | `crates/kernel/src/scope.rs` (`ExecutionScope`), `crates/web/src/scope.rs` (`Scope` extractor, dev header mode), scope on events/audit/outbox rows | ✅ header mode; session-bound scope in Batch 1 |
+| L5-0005 Persistence ownership | One owner per fact, schema per owner, no cross-owner SQL | `migrations/20261010000001_create_domain_schemas.sql`, `deploy/postgres/init.sql` (per-schema roles), architecture test `modules_do_not_touch_foreign_schemas` | ✅ (per-schema runtime roles switched on in Batch 1) |
+| L5-0006 Owner-local tx + optimistic concurrency | `version` column, explicit conflicts | `crates/kernel/src/concurrency.rs`, `modules/institution/src/repo.rs` (`UPDATE … WHERE version = $n`), ETag / `If-Match` → 412/428 in `modules/institution/src/http.rs` | ✅ |
+| L5-0007 Atomic state → publication intent | Outbox row in the same transaction | `migrations/…_platform_outbox.sql`, `crates/persistence/src/outbox.rs`, used in `modules/institution/src/repo.rs`; `EventPublisher` port in `crates/kernel/src/events.rs` | ✅ writer; relay → NATS in Batch 1 |
+| L5-0008 Expand/migrate/contract | Versioned, immutable migrations, separate from serving | `migrations/` (sqlx), `crates/persistence/src/migrate.rs`, `sutra-api migrate` subcommand, compose `migrate` service | ✅ |
+| L5-0015 Web client platform | TypeScript + React + React Router framework mode, SPA, SSR off, static artifact | `apps/web` (`react-router.config.ts` `ssr: false`), `deploy/docker/web.Dockerfile` (nginx static + SPA fallback) | ✅ |
+| L5-0018 Rust primary server platform | Rust backend; Flowable as governed JVM exception | whole `crates/`, `modules/`, `apps/api` | ✅ |
+| L5-0019 Axum + Tokio | Axum HTTP, Tokio runtime, Tower middleware; framework types don't leak into contracts | `crates/web`, `apps/api`; kernel/contracts are framework-free (architecture test) | ✅ |
+| L5-0020 PostgreSQL 18 + SQLx | PG18, SQLx, no ORM | `crates/persistence`, `docker-compose.yml` (`postgres:18`), runtime-checked queries (builds with no DB) | ✅ |
+| L5-0021 REST/JSON + OpenAPI | REST/JSON documented by OpenAPI | utoipa annotations on handlers, `openapi/openapi.json`, `/api/openapi.json` | ⚠️ see deviations (3.1 code-first) |
+| L5-0022 NATS JetStream | Event transport | port only (`EventPublisher`, `LoggingEventPublisher`) | ⏭ Batch 1 |
+| L5-0023 BPMN + Flowable OSS 8 | Isolated JVM workflow runtime | `crates/contracts/src/platform/workflow.rs` (`WorkflowPort`), `modules/platform/src/workflow.rs` (`NoopWorkflowAdapter`) | ✅ port + no-op; Flowable adapter Batch 9 |
+| L5-0024 Keycloak 26 | Credential/federation authority | `modules/platform/src/auth/keycloak.rs` (interface, returns 501), `deploy/keycloak/realm-sutra-dev.json`, compose `keycloak:26.7` | ✅ interface; adapter Batch 1 |
+| L5-0030 GitHub Actions + GHCR + Sigstore | CI/CD supply chain | `.github/workflows/ci.yml` | ✅ CI; GHCR push + Cosign in Batch 9 |
+| L5-0032 rust_decimal money | `Decimal` monetary scalar, explicit rounding | `crates/kernel/src/money.rs`, `modules/finance/src/fees.rs`; amounts serialize as strings | ✅ |
+| L5-0034 API wire/version/error/idempotency | camelCase, `/api/v1`, RFC 9457 + `errorCode`/`correlationId`/`validationErrors`, `Idempotency-Key` | `crates/web/src/problem.rs`, `crates/web/src/idempotency.rs`, `crates/persistence/src/idempotency.rs`, `#[serde(rename_all = "camelCase")]` on DTOs | ✅ |
+| L5-0035 Event envelope | CloudEvents 1.0 JSON, camelCase data | `crates/kernel/src/events.rs` (`EventEnvelope`) | ✅ (JSON Schema catalog later) |
+| L5-0036 Persistence conventions | UUIDv7, timestamptz/UTC, no universal soft delete, bounded pools, no extensions | `crates/kernel/src/id.rs`, `DEFAULT uuidv7()` columns, pool sets `timezone=UTC`, migration test forbids `CREATE EXTENSION` | ✅ |
+| L5-0037 Valkey cache | Derived, non-authoritative cache | compose `valkey` service only | ⏭ adapter in Batch 1 |
+| L5-0038 Custom credential API + server session + MFA | `POST /api/v1/auth/login`, opaque `HttpOnly; Secure; SameSite` cookie, no ROPC, MFA hook | `modules/platform/src/auth/{http,dev,session}.rs`, `crates/contracts/src/platform/auth.rs` (`CredentialAuthenticator`, `MfaPolicy`, `SessionStore`) | ✅ dev stub; Keycloak delegation, durable sessions and CSRF tokens in Batch 1 |
+| L5-0044 Health & graceful lifecycle (supporting) | live/ready, draining on shutdown | `crates/web/src/health.rs`, `apps/api/src/shutdown.rs` | ✅ |

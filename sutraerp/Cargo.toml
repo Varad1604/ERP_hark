@@ -1,0 +1,94 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/kernel",
+    "crates/contracts",
+    "crates/persistence",
+    "crates/web",
+    "modules/platform",
+    "modules/institution",
+    "modules/student",
+    "modules/academic",
+    "modules/people",
+    "modules/finance",
+    "modules/campus",
+    "modules/services",
+    "modules/exams",
+    "modules/resources",
+    "apps/api",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "UNLICENSED"
+publish = false
+
+[workspace.dependencies]
+# Internal crates
+sutra-kernel = { path = "crates/kernel" }
+sutra-contracts = { path = "crates/contracts" }
+sutra-persistence = { path = "crates/persistence" }
+sutra-web = { path = "crates/web" }
+sutra-platform = { path = "modules/platform" }
+sutra-institution = { path = "modules/institution" }
+sutra-student = { path = "modules/student" }
+sutra-academic = { path = "modules/academic" }
+sutra-people = { path = "modules/people" }
+sutra-finance = { path = "modules/finance" }
+sutra-campus = { path = "modules/campus" }
+sutra-services = { path = "modules/services" }
+sutra-exams = { path = "modules/exams" }
+sutra-resources = { path = "modules/resources" }
+
+# Runtime / HTTP (ADR-L5-0019)
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal", "time", "sync"] }
+axum = { version = "0.8", default-features = false, features = ["http1", "json", "query", "tokio", "tower-log", "matched-path", "original-uri"] }
+tower = { version = "0.5", default-features = false, features = ["util"] }
+tower-http = { version = "0.6", features = ["trace", "timeout", "limit", "sensitive-headers", "catch-panic"] }
+http = "1"
+http-body-util = "0.1"
+
+# Contracts / OpenAPI (ADR-L5-0021 / 0034)
+utoipa = { version = "5", features = ["uuid", "chrono", "decimal"] }
+utoipa-axum = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Persistence (ADR-L5-0020 / 0036)
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "tls-rustls-ring-webpki", "postgres", "uuid", "chrono", "rust_decimal", "json", "migrate", "macros"] }
+
+# Primitives
+uuid = { version = "1", features = ["v7", "serde"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde", "std"] }
+rust_decimal = { version = "1", features = ["serde-with-str"] }
+thiserror = "2"
+async-trait = "0.1"
+sha2 = "0.10"
+getrandom = "0.3"
+
+# Observability (ADR-L5-0029 hooks)
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "fmt"] }
+
+dotenvy = "0.15"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+dbg_macro = "warn"
+todo = "warn"
+unwrap_used = "warn"
+
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
+
+[profile.release]
+lto = "thin"
+codegen-units = 4
+strip = "symbols"
