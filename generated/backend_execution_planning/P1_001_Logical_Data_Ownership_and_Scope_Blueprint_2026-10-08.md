@@ -112,7 +112,7 @@ Identify foundational domain-owned business entities, scopes and invariants befo
 
 1. **Owner-specific** logical PostgreSQL namespaces/roles for co-located owners; direct cross-owner authoritative SQL read/write forbidden. Physical placement can evolve under B02 governance.
 2. Every protected execution has validated **Tenant root**; Institution/lower context can only narrow it, not widen it; absent, stale, switched or mismatched scope fails closed. A04 intentionally does not mandate a `tenant_id` column on every table.
-3. PostgreSQL 18.x + SQLx selected; new persistent technical IDs use **UUIDv7** by default, stored as PostgreSQL `uuid`.
+3. PostgreSQL 18.x + SQLx selected; new persistent **technical** IDs use **UUIDv7** by default, stored as PostgreSQL `uuid`. Source-owned canonical **business** identities are governed by their business owner and are not silently replaced by technical IDs (ADR-L5-0036).
 4. Technical instants use PostgreSQL `timestamptz`, UTC normalized, while business dates and effective policy timezones require explicit semantics.
 5. No global soft-delete convention. Owner states/history/retention rule the data lifecycle.
 6. Schema migrations explicit, immutable once applied, separate privileged migration identity; expand→migrate→transition→contract.
@@ -140,7 +140,7 @@ Identify foundational domain-owned business entities, scopes and invariants befo
 
 - **P1-A:** expand inventory per Section A–J, record evidence/owner, note any specific source conflicts and version precedence.
 - **P1-B:** define logical cardinalities, identity correlation, Tenant/Institution/lower-scope constraints and time/history ownership.
-- **P1-C:** define owner boundary catalogue and cross-owner contract/event relationships, then approve data naming standards.
+- **P1-C:** define owner boundary catalogue and cross-owner contract/event relationships; **apply existing locked L5 naming and identity conventions** (including ADR-L5-0034/0036), reviewing only domain-specific physical names not predetermined by the locked architecture.
 - **P1-D:** derive exact PostgreSQL physical DDL **owner-by-owner**, alongside released OpenAPI/JSON Schema and test specifications.
 - **P1-E:** approve first small end-to-end implementation slice only after P0 authority and P1-A–D slice prerequisites clear.
 
